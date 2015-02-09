@@ -5,6 +5,9 @@ KMP算法
 http://billhoo.blog.51cto.com/2337751/411486/
 '''
 
+from utils import print_cost
+
+@print_cost
 def get_NextList(text):
 	next = []
 	point = 1
@@ -39,5 +42,30 @@ def get_NextList(text):
 				next.append(0)
 
 		point += 1
+
+	return next
+
+@print_cost
+def get_NextList_v2(text):
+	next = []
+	value = 0
+	point = 0
+	for i in range(len(text)):
+		if i == 0:
+			next.append(0)
+		else:
+			if text[i] == text[point]:
+				value += 1
+				point += 1
+				next.append(value)
+			else:
+				value = 0
+				point = 0
+				if text[i] == text[point]:
+					value += 1
+					point += 1
+					next.append(value)
+				else:
+					next.append(0)
 
 	return next

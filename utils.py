@@ -1,4 +1,6 @@
 #-*- coding:utf-8 -*-
+import time
+import datetime
 
 def build_blanklist(length1,length2):
 	result = []
@@ -24,3 +26,12 @@ def get_min(numlist):
 		minnum = 0
 
 	return minnum
+
+def print_cost(method):
+    def warpper(request,*args, **kwargs):
+        now = datetime.datetime.utcnow()
+        result = method(request,*args, **kwargs)
+        cost = datetime.datetime.utcnow() - now
+        print 'cost: %s' % cost
+        return result
+    return warpper
