@@ -1,6 +1,8 @@
 #-*- coding:utf-8 -*-
 '''
 KMP算法
+
+http://en.wikipedia.org/wiki/Knuth-Morris-Pratt_algorithm
 '''
 
 from utils import print_cost
@@ -87,5 +89,3 @@ def Match(text,search_string):
 
 	print "Didn't find '%s' in text." % (search_string)
 	return -1
-
-	
