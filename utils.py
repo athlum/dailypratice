@@ -32,6 +32,6 @@ def print_cost(method):
         now = datetime.datetime.utcnow()
         result = method(request,*args, **kwargs)
         cost = datetime.datetime.utcnow() - now
-        print 'cost: %s' % cost
+        print '%s cost: %s' % (method.func_name,cost)
         return result
     return warpper
