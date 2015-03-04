@@ -81,6 +81,7 @@ class TrieTree:
 	def Search(self,context):
 		result = []
 		currentNode = self.treeNode
+		# 在未找到匹配字符或者已经遍历到最后一个叶节点之后，需要通过failnode跳转到另外的节点再搜索一次。
 		for index in range(len(context)):
 			word = context[index]
 			# print 'currentNode',currentNode.nodeChar,word
@@ -90,7 +91,7 @@ class TrieTree:
 				if node:
 					# print 'node',node.nodeChar
 					if node.isfinal:
-						result.append({'index':index+1-len(node.wordcontext),'id':node.id})
+						result.append({'index':index+1-len(node.wordcontext),'context':node.wordcontext,'id':node.id})
 					else:
 						currentNode = node
 						break
@@ -107,6 +108,13 @@ class TrieTree:
 
 if __name__ == '__main__':
 	wordlist = ['abcde','abfg','hijkl','cdef']
-
+	print 'keyword list', wordlist
 	tree = TrieTree(wordlist)
-	print tree.Search('abcfabcdefghijklabhijk')
+	context = """
+	abcfabcdefghijklabhijk
+	abcfabcdefghijklabhijk
+	"""
+	print 'context length',len(context)
+	matchs = tree.Search(context)
+	print 'matchs',len(matchs)
+	print 'location',matchs
